@@ -1,6 +1,8 @@
 
 <!-- ----- debut ControllerMenu -->
 <?php
+
+require_once '../model/ModelReservation.php';
 class ControllerMenu {
  // --- page d'acceuil
  public static function menuAccueil() {

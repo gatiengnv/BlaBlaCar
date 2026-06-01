@@ -1,7 +1,6 @@
 
 <!-- ----- debut Model -->
 <?php
-
 class Model extends PDO {
 
  private static $_instance;
@@ -13,7 +12,9 @@ class Model extends PDO {
  //Singleton
  public static function getInstance() {
   // les variables sont définies dans le fichier config.php
-  include_once '../controller/config.php';
+  require_once __DIR__ . '/../controller/config.php';
+  
+  global $dsn, $username, $password;
 
   if (DEBUG) echo ("Model : getInstance : dsn = $dsn</br>");
 
