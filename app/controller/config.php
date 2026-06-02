@@ -14,7 +14,11 @@ $username = 'username';
 $password = '.....';
 
 if (!defined('LOCAL')) {
-    define('LOCAL', TRUE);
+    define('LOCAL', FALSE);
+}
+
+if (!defined('DOCKER_DEV')) {
+    define('DOCKER_DEV', TRUE);
 }
 
 if (LOCAL) {
@@ -22,6 +26,13 @@ if (LOCAL) {
     $dsn = 'mysql:dbname=BlaBlaCar;host=localhost;charset=utf8';
     $username = 'root';
     $password = 'root';
+}
+
+if (DOCKER_DEV) {
+    // Configuration de la base de données avec la config docker de dev
+    $dsn = 'mysql:host=127.0.0.1;port=3306;dbname=project_bdd;charset=utf8';
+    $username = 'dbuser';
+    $password = 'dbuser';
 }
 
 // chemin absolu vers le répertoire du projet SUR DEV-ISI

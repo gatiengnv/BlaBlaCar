@@ -1,0 +1,46 @@
+services:
+
+  # MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: lo07-project-bdd
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: project_bdd
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbuser
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      interval: 10s
+      retries: 10
+    networks:
+      - project-network
+
+  # PhpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: lo07-project-phpmyadmin
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: admin
+    ports:
+      - "8080:80"
+    networks:
+      - project-network
+
+volumes:
+  mysql_data:
+
+networks:
+  project-network:
+    driver: bridge
