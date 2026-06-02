@@ -28,7 +28,8 @@ $allowed_actions = array(
 
     // Administateur
     "utilisateursReadAll" => array("controller" => "ControllerAdministrateur", "method" => "utilisateursReadAll"),
-
+    "villesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "villesReadAll"),
+    "vehiculesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "vehiculesReadAll"),
 );
 
 /** Tache par defaut */ 
