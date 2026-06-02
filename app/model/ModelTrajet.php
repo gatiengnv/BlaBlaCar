@@ -1,222 +1,452 @@
-<!-- ----- debut ModelTrajet -->
-
 <?php
+
 require_once __DIR__ . '/Model.php';
 
-class ModelTrajet {
- private $id, $ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut;
+/**
+ * Modèle représentant un trajet.
+ */
+class ModelTrajet
+{
+    /** Identifiant unique du trajet */
+    private int $id;
 
- public function __construct($id = NULL, $ville_depart = NULL, $ville_arrivee = NULL, $conducteur_id = NULL, $vehicule_id = NULL, $prix = NULL, $date_depart = NULL, $heure_depart = NULL, $statut = NULL) {
-  if (!is_null($id)) {
-   $this->id = $id;
-   $this->ville_depart = $ville_depart;
-   $this->ville_arrivee = $ville_arrivee;
-   $this->conducteur_id = $conducteur_id;
-   $this->vehicule_id = $vehicule_id;
-   $this->prix = $prix;
-   $this->date_depart = $date_depart;
-   $this->heure_depart = $heure_depart;
-   $this->statut = $statut;
-  }
- }
+    /** Identifiant de la ville de départ */
+    private int $ville_depart;
 
- function setId($id) {
-  $this->id = $id;
- }
+    /** Identifiant de la ville d'arrivée */
+    private int $ville_arrivee;
 
- function setVille_depart($ville_depart) {
-  $this->ville_depart = $ville_depart;
- }
+    /** Identifiant du conducteur */
+    private int $conducteur_id;
 
- function setVille_arrivee($ville_arrivee) {
-  $this->ville_arrivee = $ville_arrivee;
- }
+    /** Identifiant du véhicule utilisé pour le trajet */
+    private int $vehicule_id;
 
- function setConducteur_id($conducteur_id) {
-  $this->conducteur_id = $conducteur_id;
- }
+    /** Prix du trajet pour un passager */
+    private float $prix;
 
- function setVehicule_id($vehicule_id) {
-  $this->vehicule_id = $vehicule_id;
- }
+    /** Date de départ du trajet */
+    private string $date_depart;
 
- function setPrix($prix) {
-  $this->prix = $prix;
- }
+    /** Heure de départ du trajet */
+    private string $heure_depart;
 
- function setDate_depart($date_depart) {
-  $this->date_depart = $date_depart;
- }
+    /** Statut du trajet : actif ou passif */
+    private string $statut;
 
- function setHeure_depart($heure_depart) {
-  $this->heure_depart = $heure_depart;
- }
+    /**
+     * Constructeur de la classe ModelTrajet.
+     *
+     * @param int|null $id Identifiant du trajet.
+     * @param int|null $ville_depart Identifiant de la ville de départ.
+     * @param int|null $ville_arrivee Identifiant de la ville d'arrivée.
+     * @param int|null $conducteur_id Identifiant du conducteur.
+     * @param int|null $vehicule_id Identifiant du véhicule.
+     * @param float|null $prix Prix du trajet.
+     * @param string|null $date_depart Date de départ du trajet.
+     * @param string|null $heure_depart Heure de départ du trajet.
+     * @param string|null $statut Statut du trajet.
+     */
+    public function __construct(
+        $id = NULL,
+        $ville_depart = NULL,
+        $ville_arrivee = NULL,
+        $conducteur_id = NULL,
+        $vehicule_id = NULL,
+        $prix = NULL,
+        $date_depart = NULL,
+        $heure_depart = NULL,
+        $statut = NULL
+    ) {
+        if (!is_null($id)) {
+            $this->id = $id;
+            $this->ville_depart = $ville_depart;
+            $this->ville_arrivee = $ville_arrivee;
+            $this->conducteur_id = $conducteur_id;
+            $this->vehicule_id = $vehicule_id;
+            $this->prix = $prix;
+            $this->date_depart = $date_depart;
+            $this->heure_depart = $heure_depart;
+            $this->statut = $statut;
+        }
+    }
 
- function setStatut($statut) {
-  $this->statut = $statut;
- }
+    /**
+     * Accesseur de l'identifiant du trajet.
+     *
+     * @return int Identifiant du trajet.
+     */
+    function getId()
+    {
+        return $this->id;
+    }
 
- function getId() {
-  return $this->id;
- }
+    /**
+     * Accesseur de l'identifiant de la ville de départ.
+     *
+     * @return int Identifiant de la ville de départ.
+     */
+    function getVille_depart()
+    {
+        return $this->ville_depart;
+    }
 
- function getVille_depart() {
-  return $this->ville_depart;
- }
+    /**
+     * Accesseur de l'identifiant de la ville d'arrivée.
+     *
+     * @return int Identifiant de la ville d'arrivée.
+     */
+    function getVille_arrivee()
+    {
+        return $this->ville_arrivee;
+    }
 
- function getVille_arrivee() {
-  return $this->ville_arrivee;
- }
+    /**
+     * Accesseur de l'identifiant du conducteur.
+     *
+     * @return int Identifiant du conducteur.
+     */
+    function getConducteur_id()
+    {
+        return $this->conducteur_id;
+    }
 
- function getConducteur_id() {
-  return $this->conducteur_id;
- }
+    /**
+     * Accesseur de l'identifiant du véhicule.
+     *
+     * @return int Identifiant du véhicule.
+     */
+    function getVehicule_id()
+    {
+        return $this->vehicule_id;
+    }
 
- function getVehicule_id() {
-  return $this->vehicule_id;
- }
+    /**
+     * Accesseur du prix du trajet.
+     *
+     * @return float Prix du trajet.
+     */
+    function getPrix()
+    {
+        return $this->prix;
+    }
 
- function getPrix() {
-  return $this->prix;
- }
+    /**
+     * Accesseur de la date de départ du trajet.
+     *
+     * @return string Date de départ du trajet.
+     */
+    function getDate_depart()
+    {
+        return $this->date_depart;
+    }
 
- function getDate_depart() {
-  return $this->date_depart;
- }
+    /**
+     * Accesseur de l'heure de départ du trajet.
+     *
+     * @return string Heure de départ du trajet.
+     */
+    function getHeure_depart()
+    {
+        return $this->heure_depart;
+    }
 
- function getHeure_depart() {
-  return $this->heure_depart;
- }
+    /**
+     * Accesseur du statut du trajet.
+     *
+     * @return string Statut du trajet.
+     */
+    function getStatut()
+    {
+        return $this->statut;
+    }
 
- function getStatut() {
-  return $this->statut;
- }
+    /**
+     * Modifie l'identifiant du trajet.
+     *
+     * @param int $id Nouvel identifiant du trajet.
+     * @return void Rien.
+     */
+    function setId(int $id)
+    {
+        $this->id = $id;
+    }
 
- public static function getAllId() {
-  try {
-   $database = Model::getInstance();
-   $query = "select id from trajet";
-   $statement = $database->prepare($query);
-   $statement->execute();
-   return $statement->fetchAll(PDO::FETCH_COLUMN, 0);
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie l'identifiant de la ville de départ.
+     *
+     * @param int $ville_depart Nouvel identifiant de la ville de départ.
+     * @return void Rien.
+     */
+    function setVille_depart(int $ville_depart)
+    {
+        $this->ville_depart = $ville_depart;
+    }
 
- public static function getMany($query) {
-  try {
-   $database = Model::getInstance();
-   $statement = $database->prepare($query);
-   $statement->execute();
-   return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie l'identifiant de la ville d'arrivée.
+     *
+     * @param int $ville_arrivee Nouvel identifiant de la ville d'arrivée.
+     * @return void Rien.
+     */
+    function setVille_arrivee(int $ville_arrivee)
+    {
+        $this->ville_arrivee = $ville_arrivee;
+    }
 
- public static function getAll() {
-  try {
-   $database = Model::getInstance();
-   $query = "select * from trajet";
-   $statement = $database->prepare($query);
-   $statement->execute();
-   return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie l'identifiant du conducteur.
+     *
+     * @param int $conducteur_id Nouvel identifiant du conducteur.
+     * @return void Rien.
+     */
+    function setConducteur_id(int $conducteur_id)
+    {
+        $this->conducteur_id = $conducteur_id;
+    }
 
- public static function getOne($id) {
-  try {
-   $database = Model::getInstance();
-   $query = "select * from trajet where id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie l'identifiant du véhicule.
+     *
+     * @param int $vehicule_id Nouvel identifiant du véhicule.
+     * @return void Rien.
+     */
+    function setVehicule_id(int $vehicule_id)
+    {
+        $this->vehicule_id = $vehicule_id;
+    }
 
- public static function insert($ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut) {
-  try {
-   $database = Model::getInstance();
-   $query = "select max(id) from trajet";
-   $statement = $database->query($query);
-   $tuple = $statement->fetch();
-   $id = $tuple['0'];
-   $id++;
+    /**
+     * Modifie le prix du trajet.
+     *
+     * @param float $prix Nouveau prix du trajet.
+     * @return void Rien.
+     */
+    function setPrix(float $prix)
+    {
+        $this->prix = $prix;
+    }
 
-   $query = "insert into trajet (id, ville_depart, ville_arrivee, conducteur_id, vehicule_id, prix, date_depart, heure_depart, statut) values (:id, :ville_depart, :ville_arrivee, :conducteur_id, :vehicule_id, :prix, :date_depart, :heure_depart, :statut)";
-   $statement = $database->prepare($query);
-   $statement->execute([
-    'id' => $id,
-    'ville_depart' => $ville_depart,
-    'ville_arrivee' => $ville_arrivee,
-    'conducteur_id' => $conducteur_id,
-    'vehicule_id' => $vehicule_id,
-    'prix' => $prix,
-    'date_depart' => $date_depart,
-    'heure_depart' => $heure_depart,
-    'statut' => $statut
-   ]);
-   return $id;
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return -1;
-  }
- }
+    /**
+     * Modifie la date de départ du trajet.
+     *
+     * @param string $date_depart Nouvelle date de départ du trajet.
+     * @return void Rien.
+     */
+    function setDate_depart(string $date_depart)
+    {
+        $this->date_depart = $date_depart;
+    }
 
- public static function update($id, $ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut) {
-  try {
-   $database = Model::getInstance();
-   $query = "update trajet set ville_depart = :ville_depart, ville_arrivee = :ville_arrivee, conducteur_id = :conducteur_id, vehicule_id = :vehicule_id, prix = :prix, date_depart = :date_depart, heure_depart = :heure_depart, statut = :statut where id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute([
-    'id' => $id,
-    'ville_depart' => $ville_depart,
-    'ville_arrivee' => $ville_arrivee,
-    'conducteur_id' => $conducteur_id,
-    'vehicule_id' => $vehicule_id,
-    'prix' => $prix,
-    'date_depart' => $date_depart,
-    'heure_depart' => $heure_depart,
-    'statut' => $statut
-   ]);
-   return $statement->rowCount();
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return -1;
-  }
- }
+    /**
+     * Modifie l'heure de départ du trajet.
+     *
+     * @param string $heure_depart Nouvelle heure de départ du trajet.
+     * @return void Rien.
+     */
+    function setHeure_depart(string $heure_depart)
+    {
+        $this->heure_depart = $heure_depart;
+    }
 
- public static function delete($id) {
-  try {
-   $database = Model::getInstance();
+    /**
+     * Modifie le statut du trajet.
+     *
+     * @param string $statut Nouveau statut du trajet.
+     * @return void Rien.
+     */
+    function setStatut(string $statut)
+    {
+        $this->statut = $statut;
+    }
 
-   $query = "select id from reservation where trajet_id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   if ($statement->rowCount() > 0) {
-    return -1;
-   }
+    /**
+     * Retourne tous les identifiants des trajets.
+     *
+     * @return array|null Tableau des identifiants ou NULL en cas d'erreur.
+     */
+    public static function getAllId()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select id from trajet";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_COLUMN, 0);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
-   $query = "delete from trajet where id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   return null;
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return -1;
-  }
- }
+    /**
+     * Retourne plusieurs trajets selon une requête SQL.
+     *
+     * @param string $query Requête SQL à exécuter.
+     * @return array|null Tableau d'objets ModelTrajet ou NULL en cas d'erreur.
+     */
+    public static function getMany(string $query)
+    {
+        try {
+            $database = Model::getInstance();
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
+    /**
+     * Retourne tous les trajets.
+     *
+     * @return array|null Tableau d'objets ModelTrajet ou NULL en cas d'erreur.
+     */
+    public static function getAll()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from trajet";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
+     * Retourne un trajet à partir de son identifiant.
+     *
+     * @param int $id Identifiant du trajet.
+     * @return array|null Trajet correspondant ou NULL en cas d'erreur.
+     */
+    public static function getOne(int $id)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from trajet where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
+     * Insère un nouveau trajet dans la base de données.
+     *
+     * @param int $ville_depart Identifiant de la ville de départ.
+     * @param int $ville_arrivee Identifiant de la ville d'arrivée.
+     * @param int $conducteur_id Identifiant du conducteur.
+     * @param int $vehicule_id Identifiant du véhicule utilisé.
+     * @param float $prix Prix du trajet.
+     * @param string $date_depart Date de départ du trajet.
+     * @param string $heure_depart Heure de départ du trajet.
+     * @param string $statut Statut du trajet.
+     * @return int Identifiant du nouveau trajet ou -1 en cas d'erreur.
+     */
+    public static function insert($ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select max(id) from trajet";
+            $statement = $database->query($query);
+            $tuple = $statement->fetch();
+            $id = $tuple['0'];
+            $id++;
+
+            $query = "insert into trajet (id, ville_depart, ville_arrivee, conducteur_id, vehicule_id, prix, date_depart, heure_depart, statut) values (:id, :ville_depart, :ville_arrivee, :conducteur_id, :vehicule_id, :prix, :date_depart, :heure_depart, :statut)";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'ville_depart' => $ville_depart,
+                'ville_arrivee' => $ville_arrivee,
+                'conducteur_id' => $conducteur_id,
+                'vehicule_id' => $vehicule_id,
+                'prix' => $prix,
+                'date_depart' => $date_depart,
+                'heure_depart' => $heure_depart,
+                'statut' => $statut
+            ]);
+            return $id;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+
+    /**
+     * Met à jour un trajet dans la base de données.
+     *
+     * @param int $id Identifiant du trajet.
+     * @param int $ville_depart Identifiant de la ville de départ.
+     * @param int $ville_arrivee Identifiant de la ville d'arrivée.
+     * @param int $conducteur_id Identifiant du conducteur.
+     * @param int $vehicule_id Identifiant du véhicule utilisé.
+     * @param float $prix Prix du trajet.
+     * @param string $date_depart Date de départ du trajet.
+     * @param string $heure_depart Heure de départ du trajet.
+     * @param string $statut Statut du trajet.
+     * @return int Nombre de lignes modifiées ou -1 en cas d'erreur.
+     */
+    public static function update($id, $ville_depart, $ville_arrivee, $conducteur_id, $vehicule_id, $prix, $date_depart, $heure_depart, $statut)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "update trajet set ville_depart = :ville_depart, ville_arrivee = :ville_arrivee, conducteur_id = :conducteur_id, vehicule_id = :vehicule_id, prix = :prix, date_depart = :date_depart, heure_depart = :heure_depart, statut = :statut where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'ville_depart' => $ville_depart,
+                'ville_arrivee' => $ville_arrivee,
+                'conducteur_id' => $conducteur_id,
+                'vehicule_id' => $vehicule_id,
+                'prix' => $prix,
+                'date_depart' => $date_depart,
+                'heure_depart' => $heure_depart,
+                'statut' => $statut
+            ]);
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+
+    /**
+     * Supprime un trajet de la base de données.
+     *
+     * La suppression est refusée si le trajet possède déjà une réservation.
+     *
+     * @param int $id Identifiant du trajet.
+     * @return int|null -1 en cas d'erreur ou de dépendance existante, NULL sinon.
+     */
+    public static function delete(int $id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select id from reservation where trajet_id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            if ($statement->rowCount() > 0) {
+                return -1;
+            }
+
+            $query = "delete from trajet where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            return null;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
 }
-?>
-<!-- ----- fin ModelTrajet -->
 
+?>

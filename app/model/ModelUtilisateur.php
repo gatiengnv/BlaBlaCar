@@ -1,214 +1,402 @@
-<!-- ----- debut ModelUtilisateur -->
-
 <?php
+
 require_once __DIR__ . '/Model.php';
 
-class ModelUtilisateur {
- private $id, $nom, $prenom, $role, $login, $password, $solde;
+/**
+ * Modèle représentant un utilisateur
+ */
+class ModelUtilisateur
+{
 
- public function __construct($id = NULL, $nom = NULL, $prenom = NULL, $role = NULL, $login = NULL, $password = NULL, $solde = NULL) {
-  if (!is_null($id)) {
-   $this->id = $id;
-   $this->nom = $nom;
-   $this->prenom = $prenom;
-   $this->role = $role;
-   $this->login = $login;
-   $this->password = $password;
-   $this->solde = $solde;
-  }
- }
+    /** Identifiant unique de l'utilisateur */
+    private int $id;
 
- function setId($id) {
-  $this->id = $id;
- }
+    /** Nom de famille de l'utilisateur */
+    private string $nom;
 
- function setNom($nom) {
-  $this->nom = $nom;
- }
+    /** Prénom de l'utilisateur */
+    private string $prenom;
 
- function setPrenom($prenom) {
-  $this->prenom = $prenom;
- }
+    /** Rôle de l'utilisateur (administrateur, conducteur, passager) */
+    private string $role;
 
- function setRole($role) {
-  $this->role = $role;
- }
+    /** Login de l'utilisateur */
+    private string $login;
 
- function setLogin($login) {
-  $this->login = $login;
- }
+    /** Mot de passe de l'utilisateur */
+    private string $password;
 
- function setPassword($password) {
-  $this->password = $password;
- }
+    /** Solde de l'utilisateur en euros */
+    private float $solde;
 
- function setSolde($solde) {
-  $this->solde = $solde;
- }
+    /**
+     * Constructeur de la classe ModelUtilisateur.
+     *
+     * @param int|null $id Identifiant de l'utilisateur.
+     * @param string|null $nom Nom de l'utilisateur.
+     * @param string|null $prenom Prénom de l'utilisateur.
+     * @param string|null $role Rôle de l'utilisateur.
+     * @param string|null $login Login de l'utilisateur.
+     * @param string|null $password Mot de passe de l'utilisateur.
+     * @param float|null $solde Solde de l'utilisateur.
+     */
+    public function __construct(
+        $id = NULL,
+        $nom = NULL,
+        $prenom = NULL,
+        $role = NULL,
+        $login = NULL,
+        $password = NULL,
+        $solde = NULL
+    ) {
+        if (!is_null($id)) {
+            $this->id = $id;
+            $this->nom = $nom;
+            $this->prenom = $prenom;
+            $this->role = $role;
+            $this->login = $login;
+            $this->password = $password;
+            $this->solde = $solde;
+        }
+    }
 
- function getId() {
-  return $this->id;
- }
+    /**
+     * Accesseur de l'identifiant de l'utilisateur.
+     *
+     * @return int Identifiant de l'utilisateur.
+     */
+    function getId()
+    {
+        return $this->id;
+    }
 
- function getNom() {
-  return $this->nom;
- }
+    /**
+     * Accesseur du nom de l'utilisateur.
+     *
+     * @return string Nom de l'utilisateur.
+     */
+    function getNom()
+    {
+        return $this->nom;
+    }
 
- function getPrenom() {
-  return $this->prenom;
- }
+    /**
+     * Accesseur du prénom de l'utilisateur.
+     *
+     * @return string Prénom de l'utilisateur.
+     */
+    function getPrenom()
+    {
+        return $this->prenom;
+    }
 
- function getRole() {
-  return $this->role;
- }
+    /**
+     * Accesseur du rôle de l'utilisateur.
+     *
+     * @return string Rôle de l'utilisateur.
+     */
+    function getRole()
+    {
+        return $this->role;
+    }
 
- function getLogin() {
-  return $this->login;
- }
+    /**
+     * Accesseur du login de l'utilisateur.
+     *
+     * @return string Login de l'utilisateur.
+     */
+    function getLogin()
+    {
+        return $this->login;
+    }
 
- function getPassword() {
-  return $this->password;
- }
+    /**
+     * Accesseur du mot de passe de l'utilisateur.
+     *
+     * @return string Mot de passe de l'utilisateur.
+     */
+    function getPassword()
+    {
+        return $this->password;
+    }
 
- function getSolde() {
-  return $this->solde;
- }
+    /**
+     * Accesseur du solde de l'utilisateur.
+     *
+     * @return float Solde de l'utilisateur.
+     */
+    function getSolde()
+    {
+        return $this->solde;
+    }
 
- public static function getAllId() {
-  try {
-   $database = Model::getInstance();
-   $query = "select id from utilisateur";
-   $statement = $database->prepare($query);
-   $statement->execute();
-   return $statement->fetchAll(PDO::FETCH_COLUMN, 0);
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie l'identifiant de l'utilisateur.
+     *
+     * @param int $id Nouvel identifiant de l'utilisateur.
+     * @return void Rien.
+     */
+    function setId(int $id)
+    {
+        $this->id = $id;
+    }
 
- public static function getMany($query) {
-  try {
-   $database = Model::getInstance();
-   $statement = $database->prepare($query);
-   $statement->execute();
-   return $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie le nom de l'utilisateur.
+     *
+     * @param string $nom Nouveau nom de l'utilisateur.
+     * @return void Rien.
+     */
+    function setNom(string $nom)
+    {
+        $this->nom = $nom;
+    }
 
- public static function getAll() {
-  try {
-   $database = Model::getInstance();
-   $query = "select * from utilisateur";
-   $statement = $database->prepare($query);
-   $statement->execute();
-   return $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie le prénom de l'utilisateur.
+     *
+     * @param string $prenom Nouveau prénom de l'utilisateur.
+     * @return void Rien.
+     */
+    function setPrenom(string $prenom)
+    {
+        $this->prenom = $prenom;
+    }
 
- public static function getOne($id) {
-  try {
-   $database = Model::getInstance();
-   $query = "select * from utilisateur where id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   return $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return NULL;
-  }
- }
+    /**
+     * Modifie le rôle de l'utilisateur.
+     *
+     * @param string $role Nouveau rôle de l'utilisateur.
+     * @return void Rien.
+     */
+    function setRole(string $role)
+    {
+        $this->role = $role;
+    }
 
- public static function insert($nom, $prenom, $role, $login, $password, $solde) {
-  try {
-   $database = Model::getInstance();
-   $query = "select max(id) from utilisateur";
-   $statement = $database->query($query);
-   $tuple = $statement->fetch();
-   $id = $tuple['0'];
-   $id++;
+    /**
+     * Modifie le login de l'utilisateur.
+     *
+     * @param string $login Nouveau login de l'utilisateur.
+     * @return void Rien.
+     */
+    function setLogin(string $login)
+    {
+        $this->login = $login;
+    }
 
-   $query = "insert into utilisateur (id, nom, prenom, role, login, password, solde) values (:id, :nom, :prenom, :role, :login, :password, :solde)";
-   $statement = $database->prepare($query);
-   $statement->execute([
-    'id' => $id,
-    'nom' => $nom,
-    'prenom' => $prenom,
-    'role' => $role,
-    'login' => $login,
-    'password' => $password,
-    'solde' => $solde
-   ]);
-   return $id;
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return -1;
-  }
- }
+    /**
+     * Modifie le mot de passe de l'utilisateur.
+     *
+     * @param string $password Nouveau mot de passe de l'utilisateur.
+     * @return void Rien.
+     */
+    function setPassword(string $password)
+    {
+        $this->password = $password;
+    }
 
- public static function update($id, $nom, $prenom, $role, $login, $password, $solde) {
-  try {
-   $database = Model::getInstance();
-   $query = "update utilisateur set nom = :nom, prenom = :prenom, role = :role, login = :login, password = :password, solde = :solde where id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute([
-    'id' => $id,
-    'nom' => $nom,
-    'prenom' => $prenom,
-    'role' => $role,
-    'login' => $login,
-    'password' => $password,
-    'solde' => $solde
-   ]);
-   return $statement->rowCount();
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return -1;
-  }
- }
+    /**
+     * Modifie le solde de l'utilisateur.
+     *
+     * @param float $solde Nouveau solde de l'utilisateur.
+     * @return void Rien.
+     */
+    function setSolde(float $solde)
+    {
+        $this->solde = $solde;
+    }
 
- public static function delete($id) {
-  try {
-   $database = Model::getInstance();
+    /**
+     * Retourne tous les identifiants des utilisateurs.
+     *
+     * @return array|null Tableau des identifiants ou NULL en cas d'erreur.
+     */
+    public static function getAllId()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select id from utilisateur";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_COLUMN, 0);
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
-   $query = "select id from trajet where conducteur_id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   if ($statement->rowCount() > 0) {
-    return -1;
-   }
+    /**
+     * Retourne plusieurs utilisateurs selon une requête SQL.
+     *
+     * @param string $query Requête SQL à exécuter.
+     * @return array|null Tableau d'objets ModelUtilisateur ou NULL en cas d'erreur.
+     */
+    public static function getMany(string $query)
+    {
+        try {
+            $database = Model::getInstance();
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
-   $query = "select id from vehicule where proprietaire_id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   if ($statement->rowCount() > 0) {
-    return -1;
-   }
+    /**
+     * Retourne tous les utilisateurs.
+     *
+     * @return array|null Tableau d'objets ModelUtilisateur ou NULL en cas d'erreur.
+     */
+    public static function getAll()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from utilisateur";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
-   $query = "select id from reservation where passager_id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   if ($statement->rowCount() > 0) {
-    return -1;
-   }
+    /**
+     * Retourne un utilisateur à partir de son identifiant.
+     *
+     * @param int $id Identifiant de l'utilisateur.
+     * @return array|null Utilisateur correspondant ou NULL en cas d'erreur.
+     */
+    public static function getOne(int $id)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from utilisateur where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
-   $query = "delete from utilisateur where id = :id";
-   $statement = $database->prepare($query);
-   $statement->execute(['id' => $id]);
-   return null;
-  } catch (PDOException $e) {
-   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-   return -1;
-  }
- }
 
+    /**
+     * Insère un nouvel utilisateur dans la base de données.
+     *
+     * @param string $nom Nom de l'utilisateur.
+     * @param string $prenom Prénom de l'utilisateur.
+     * @param string $role Rôle de l'utilisateur.
+     * @param string $login Login de l'utilisateur.
+     * @param string $password Mot de passe de l'utilisateur.
+     * @param float $solde Solde de l'utilisateur.
+     * @return int Identifiant du nouvel utilisateur ou -1 en cas d'erreur.
+     */
+    public static function insert($nom, $prenom, $role, $login, $password, $solde)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select max(id) from utilisateur";
+            $statement = $database->query($query);
+            $tuple = $statement->fetch();
+            $id = $tuple['0'];
+            $id++;
+
+            $query = "insert into utilisateur (id, nom, prenom, role, login, password, solde) values (:id, :nom, :prenom, :role, :login, :password, :solde)";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'role' => $role,
+                'login' => $login,
+                'password' => $password,
+                'solde' => $solde
+            ]);
+            return $id;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+
+    /**
+     * Met à jour un utilisateur dans la base de données.
+     *
+     * @param int $id Identifiant de l'utilisateur.
+     * @param string $nom Nom de l'utilisateur.
+     * @param string $prenom Prénom de l'utilisateur.
+     * @param string $role Rôle de l'utilisateur.
+     * @param string $login Login de l'utilisateur.
+     * @param string $password Mot de passe de l'utilisateur.
+     * @param float $solde Solde de l'utilisateur.
+     * @return int Nombre de lignes modifiées ou -1 en cas d'erreur.
+     */
+    public static function update($id, $nom, $prenom, $role, $login, $password, $solde)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "update utilisateur set nom = :nom, prenom = :prenom, role = :role, login = :login, password = :password, solde = :solde where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'role' => $role,
+                'login' => $login,
+                'password' => $password,
+                'solde' => $solde
+            ]);
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+
+    /**
+     * Supprime un utilisateur de la base de données.
+     *
+     * @param int $id Identifiant de l'utilisateur.
+     * @return int|null -1 en cas d'erreur ou de dépendances existantes, NULL sinon.
+     */
+    public static function delete($id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select id from trajet where conducteur_id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            if ($statement->rowCount() > 0) {
+                return -1;
+            }
+
+            $query = "select id from vehicule where proprietaire_id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            if ($statement->rowCount() > 0) {
+                return -1;
+            }
+
+            $query = "select id from reservation where passager_id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            if ($statement->rowCount() > 0) {
+                return -1;
+            }
+
+            $query = "delete from utilisateur where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $id]);
+            return null;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
 }
-?>
-<!-- ----- fin ModelUtilisateur -->
-
