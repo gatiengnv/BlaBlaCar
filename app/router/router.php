@@ -1,7 +1,9 @@
 <?php
 
 require('../controller/ControllerMenu.php');
-require('../controller/ControllerAdministrateur.php');
+require('../controller/ControllerUtilisateur.php');
+require('../controller/ControllerVille.php');
+require('../controller/ControllerVehicule.php');
 
 /** récupération de l'action passée dans l'URL */
 $query_string = $_SERVER['QUERY_STRING'];
@@ -27,17 +29,17 @@ $allowed_actions = array(
     "menuAccueil" => array("controller" => "ControllerMenu", "method" => "menuAccueil"),
 
     // Utilisateurs
-    "utilisateursReadAll" => array("controller" => "ControllerAdministrateur", "method" => "utilisateursReadAll"),
-    
+    "utilisateursReadAll" => array("controller" => "ControllerUtilisateur", "method" => "utilisateursReadAll"),
+
     // Ville
-    "villeCreate" => array("controller" => "ControllerAdministrateur", "method" => "villeCreate"),
-    "villeCreated" => array("controller" => "ControllerAdministrateur", "method" => "villeCreated"),
-    "villesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "villesReadAll"),
+    "villeCreate" => array("controller" => "ControllerVille", "method" => "villeCreate"),
+    "villeCreated" => array("controller" => "ControllerVille", "method" => "villeCreated"),
+    "villesReadAll" => array("controller" => "ControllerVille", "method" => "villesReadAll"),
 
     // Vehicules
-    "vehiculesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "vehiculesReadAll"),
-    "vehicleCreate" => array("controller" => "ControllerAdministrateur", "method" => "vehicleCreate"),
-    "vehicleCreated" => array("controller" => "ControllerAdministrateur", "method" => "vehicleCreated"),
+    "vehiculesReadAll" => array("controller" => "ControllerVehicule", "method" => "vehiculesReadAll"),
+    "vehicleCreate" => array("controller" => "ControllerVehicule", "method" => "vehicleCreate"),
+    "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
 );
 
 /** Tache par defaut */
