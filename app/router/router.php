@@ -30,9 +30,11 @@ $allowed_actions = array(
     "utilisateursReadAll" => array("controller" => "ControllerAdministrateur", "method" => "utilisateursReadAll"),
     "villesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "villesReadAll"),
     "vehiculesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "vehiculesReadAll"),
+    "villeCreate" => array("controller" => "ControllerAdministrateur", "method" => "villeCreate"),
+    "villeCreated" => array("controller" => "ControllerAdministrateur", "method" => "villeCreated"),
 );
 
-/** Tache par defaut */ 
+/** Tache par defaut */
 if (!array_key_exists($action, $allowed_actions)) {
     $action = "menuAccueil";
 }
@@ -42,4 +44,3 @@ $controller = $route["controller"];
 $method = $route["method"];
 
 $controller::$method($args);
-?>
