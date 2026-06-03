@@ -26,12 +26,18 @@ $allowed_actions = array(
     // Menu
     "menuAccueil" => array("controller" => "ControllerMenu", "method" => "menuAccueil"),
 
-    // Administateur
+    // Utilisateurs
     "utilisateursReadAll" => array("controller" => "ControllerAdministrateur", "method" => "utilisateursReadAll"),
-    "villesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "villesReadAll"),
-    "vehiculesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "vehiculesReadAll"),
+    
+    // Ville
     "villeCreate" => array("controller" => "ControllerAdministrateur", "method" => "villeCreate"),
     "villeCreated" => array("controller" => "ControllerAdministrateur", "method" => "villeCreated"),
+    "villesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "villesReadAll"),
+
+    // Vehicules
+    "vehiculesReadAll" => array("controller" => "ControllerAdministrateur", "method" => "vehiculesReadAll"),
+    "vehicleCreate" => array("controller" => "ControllerAdministrateur", "method" => "vehicleCreate"),
+    "vehicleCreated" => array("controller" => "ControllerAdministrateur", "method" => "vehicleCreated"),
 );
 
 /** Tache par defaut */
