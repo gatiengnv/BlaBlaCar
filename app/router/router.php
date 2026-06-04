@@ -44,6 +44,7 @@ $allowed_actions = array(
     // Vehicules
     "vehiculesReadAll" => array("controller" => "ControllerVehicule", "method" => "vehiculesReadAll"),
     "mesVehicules" => array("controller" => "ControllerConducteur", "method" => "mesVehicules"),
+    "mesTrajets" => array("controller" => "ControllerConducteur", "method" => "mesTrajets"),
     "vehicleCreate" => array("controller" => "ControllerVehicule", "method" => "vehicleCreate"),
     "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
     // Auth

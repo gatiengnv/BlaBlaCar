@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Model.php';
+require_once __DIR__ . '/ModelTrajetEnrichi.php';
 
 /**
  * Modèle représentant un trajet.
@@ -293,6 +294,36 @@ class ModelTrajet
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajet");
         } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
+     * Retourne tous les trajets d'un conducteur avec les noms des villes.
+     *
+     * @param int $conducteur_id Identifiant du conducteur.
+     * @return array|null Tableau d'objets ModelTrajetEnrichi ou NULL en cas d'erreur.
+     */
+    public static function getByConducteurId(int $conducteur_id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select t.id, vd.nom as nom_depart, va.nom as nom_arrivee, 
+                             t.date_depart, t.heure_depart, t.prix, t.statut
+                      from trajet t
+                      join ville vd on t.ville_depart = vd.id
+                      join ville va on t.ville_arrivee = va.id
+                      where t.conducteur_id = :conducteur_id
+                      order by t.date_depart desc";
+
+            $statement = $database->prepare($query);
+            $statement->execute(['conducteur_id' => $conducteur_id]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajetEnrichi");
+        } catch (PDOException $e) {
+
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
         }

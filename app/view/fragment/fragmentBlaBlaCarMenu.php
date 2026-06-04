@@ -34,6 +34,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="router.php?action=mesVehicules">Mes véhicules</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="router.php?action=mesTrajets">Mes trajets</a>
+                    </li>
                     <?php
                 }
                 ?>
