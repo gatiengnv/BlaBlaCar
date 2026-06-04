@@ -225,6 +225,30 @@ class ModelVehicule
     }
 
     /**
+     * Retourne tous les véhicules d'un propriétaire.
+     *
+     * @param int $proprietaire_id Identifiant du propriétaire.
+     * @return array|null Tableau d'objets ModelVehicule ou NULL en cas d'erreur.
+     */
+    public static function getByProprietaireId(int $proprietaire_id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select * from vehicule where proprietaire_id = :proprietaire_id";
+
+            $statement = $database->prepare($query);
+            $statement->execute(['proprietaire_id' => $proprietaire_id]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelVehicule");
+        } catch (PDOException $e) {
+
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
      * Retourne tous les véhicules.
      *
      * @return array|null Tableau d'objets ModelVehicule ou NULL en cas d'erreur.

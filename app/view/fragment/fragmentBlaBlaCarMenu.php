@@ -29,6 +29,13 @@
                     </li>
                     <?php
                 }
+                if ($role === 'conducteur') {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="router.php?action=mesVehicules">Mes véhicules</a>
+                    </li>
+                    <?php
+                }
                 ?>
 
                 <li class="nav-item dropdown">
