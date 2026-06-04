@@ -30,6 +30,9 @@ $allowed_actions = array(
 
     // Utilisateurs
     "utilisateursReadAll" => array("controller" => "ControllerUtilisateur", "method" => "utilisateursReadAll"),
+    "conducteurCreate" => array("controller" => "ControllerUtilisateur", "method" => "conducteurCreate"),
+    "passagerCreate" => array("controller" => "ControllerUtilisateur", "method" => "passagerCreate"),
+    "userCreated" => array("controller" => "ControllerUtilisateur", "method" => "userCreated"),
 
     // Ville
     "villeCreate" => array("controller" => "ControllerVille", "method" => "villeCreate"),
