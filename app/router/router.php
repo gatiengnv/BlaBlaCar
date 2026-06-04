@@ -1,7 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['login_id'])) {
+    $_SESSION['login_id'] = -1;
+}
 
 require('../controller/ControllerMenu.php');
-require('../controller/ControllerAdministrateur.php');
+require('../controller/ControllerUtilisateur.php');
+require('../controller/ControllerVille.php');
+require('../controller/ControllerVehicule.php');
 
 /** récupération de l'action passée dans l'URL */
 $query_string = $_SERVER['QUERY_STRING'];
@@ -26,12 +32,25 @@ $allowed_actions = array(
     // Menu
     "menuAccueil" => array("controller" => "ControllerMenu", "method" => "menuAccueil"),
 
-    // Administateur
-    "utilisateursReadAll" => array("controller" => "ControllerAdministrateur", "method" => "utilisateursReadAll"),
+    // Utilisateurs
+    "utilisateursReadAll" => array("controller" => "ControllerUtilisateur", "method" => "utilisateursReadAll"),
 
+    // Ville
+    "villeCreate" => array("controller" => "ControllerVille", "method" => "villeCreate"),
+    "villeCreated" => array("controller" => "ControllerVille", "method" => "villeCreated"),
+    "villesReadAll" => array("controller" => "ControllerVille", "method" => "villesReadAll"),
+
+    // Vehicules
+    "vehiculesReadAll" => array("controller" => "ControllerVehicule", "method" => "vehiculesReadAll"),
+    "vehicleCreate" => array("controller" => "ControllerVehicule", "method" => "vehicleCreate"),
+    "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
+    // Auth
+    "loginForm" => array("controller" => "ControllerUtilisateur", "method" => "loginForm"),
+    "loginTry" => array("controller" => "ControllerUtilisateur", "method" => "loginTry"),
+    "logout" => array("controller" => "ControllerUtilisateur", "method" => "logout"),
 );
 
-/** Tache par defaut */ 
+/** Tache par defaut */
 if (!array_key_exists($action, $allowed_actions)) {
     $action = "menuAccueil";
 }
@@ -41,4 +60,3 @@ $controller = $route["controller"];
 $method = $route["method"];
 
 $controller::$method($args);
-?>
