@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="router.php?action=action">BlaBlaCar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -13,27 +13,27 @@
                 /** @var string $role */
                 $role = (string) ($_SESSION['login_role'] ?? '');
                 if ($role === 'administrateur') {
-                    ?>
+                ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">Administrateur</a>
+                            aria-expanded="false">Administrateur</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="router.php?action=utilisateursReadAll">Liste des
-                                utilisateurs</a></li>
+                            <li><a class="dropdown-item" href="router.php?action=utilisateursReadAll">Liste des utilisateurs</a></li>
                             <li><a class="dropdown-item" href="router.php?action=villesReadAll">Liste des villes</a></li>
-                            <li><a class="dropdown-item" href="router.php?action=vehiculesReadAll">Liste des véhicules</a>
-                            </li>
+                            <li><a class="dropdown-item" href="router.php?action=vehiculesReadAll">Liste des véhicules</a></li>
                             <li><a class="dropdown-item" href="router.php?action=villeCreate">Ajout d'une ville</a></li>
                             <li><a class="dropdown-item" href="router.php?action=vehicleCreate">Ajout d'un véhicule</a></li>
+                            <li><a class="dropdown-item" href="router.php?action=conducteurCreate">Ajout d'un conducteur</a></li>
+                            <li><a class="dropdown-item" href="router.php?action=passagerCreate">Ajout d'un passager</a></li>
                         </ul>
                     </li>
-                    <?php
+                <?php
                 }
                 ?>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">Innovations</a>
+                        aria-expanded="false">Innovations</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="router.php?action=">...</a></li>
                     </ul>
@@ -41,7 +41,7 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">Examinateur</a>
+                        aria-expanded="false">Examinateur</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="router.php?action=">...</a></li>
                     </ul>
