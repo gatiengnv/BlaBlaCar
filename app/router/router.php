@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['login_id'])) {
+    $_SESSION['login_id'] = -1;
+}
 
 require('../controller/ControllerMenu.php');
 require('../controller/ControllerUtilisateur.php');
@@ -40,6 +44,10 @@ $allowed_actions = array(
     "vehiculesReadAll" => array("controller" => "ControllerVehicule", "method" => "vehiculesReadAll"),
     "vehicleCreate" => array("controller" => "ControllerVehicule", "method" => "vehicleCreate"),
     "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
+    // Auth
+    "loginForm" => array("controller" => "ControllerUtilisateur", "method" => "loginForm"),
+    "loginTry" => array("controller" => "ControllerUtilisateur", "method" => "loginTry"),
+    "logout" => array("controller" => "ControllerUtilisateur", "method" => "logout"),
 );
 
 /** Tache par defaut */
