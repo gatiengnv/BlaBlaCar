@@ -99,6 +99,7 @@ class ControllerUtilisateur
         include 'config.php';
         $rootPath = isset($root) ? $root : '';
         $vue = $rootPath . '/app/view/administrateur/addConducteur.php';
+        require($vue);
     }
 
     /**
@@ -126,9 +127,14 @@ class ControllerUtilisateur
             $nom = trim($_POST['user_nom']);
             $prenom = trim($_POST['user_prenom']);
             $solde = intval($_POST['user_solde']);
-            $role = $_POST['type_user'];
+            $typeUser = $_POST['type_user'];
 
-            $login = strtolower(str_replace(' ', '', $nom . $prenom));
+            // Varchar20 pour le login
+            $login = strtolower(
+                preg_replace('/[^a-z0-9]/', '', $nom . $prenom)
+            );
+
+            $login = substr($login, 0, 20);
             $password = "secret";
 
             $utilisateurs = ModelUtilisateur::getAll();
@@ -156,8 +162,14 @@ class ControllerUtilisateur
                 return;
             }
 
-            $result = ModelUtilisateur::insert($nom, $prenom, $role, $login, $password, $solde);
-
+            $result = ModelUtilisateur::insert(
+                $nom,
+                $prenom,
+                $typeUser,
+                $login,
+                $password,
+                $solde
+            );
 
             $vue = $rootPath . '/app/view/administrateur/viewUserInserted.php';
             require($vue);

@@ -3,6 +3,12 @@ $rootPath = isset($root) ? $root : '';
 $result = $result ?? null;
 $message = $message ?? null;
 
+$nom = $nom ?? '';
+$prenom = $prenom ?? '';
+$login = $login ?? '';
+$typeUser = $typeUser ?? '';
+$solde = $solde ?? '';
+
 require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
 ?>
 
@@ -16,7 +22,7 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
         <?php if ($message): ?>
 
             <h3><?= htmlspecialchars($message) ?></h3>
-            <p>Login généré = <?= htmlspecialchars($login ?? '') ?></p>
+            <p>Login généré = <?= htmlspecialchars($login) ?></p>
 
         <?php elseif ($result && $result != -1): ?>
 
@@ -28,7 +34,7 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
                 <li>prénom = <?= htmlspecialchars($prenom) ?></li>
                 <li>login = <?= htmlspecialchars($login) ?></li>
                 <li>mot de passe = secret</li>
-                <li>rôle = <?= htmlspecialchars($role) ?></li>
+                <li>rôle = <?= htmlspecialchars($typeUser) ?></li>
                 <li>solde = <?= htmlspecialchars($solde) ?></li>
             </ul>
 
