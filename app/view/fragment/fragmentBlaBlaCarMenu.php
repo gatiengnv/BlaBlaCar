@@ -37,6 +37,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="router.php?action=mesTrajets">Mes trajets</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="router.php?action=trajetCreate">Créer un trajet</a>
+                    </li>
                     <?php
                 }
                 ?>
