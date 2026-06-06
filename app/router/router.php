@@ -57,6 +57,7 @@ $allowed_actions = array(
     "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
     // Examinateur
     "examinateurSuperglobales" => array("controller" => "ControllerExaminateur", "method" => "superglobales"),
+    "examinateurReservationsAleatoires" => array("controller" => "ControllerExaminateur", "method" => "reservationsAleatoires"),
 
     // Auth
     "loginForm" => array("controller" => "ControllerUtilisateur", "method" => "loginForm"),

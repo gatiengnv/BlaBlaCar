@@ -57,6 +57,7 @@
                         aria-expanded="false">Examinateur</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="router.php?action=examinateurSuperglobales">E1 - SuperGlobales</a></li>
+                        <li><a class="dropdown-item" href="router.php?action=examinateurReservationsAleatoires">E2 - Réservations aléatoires</a></li>
                     </ul>
                 </li>
 
