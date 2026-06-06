@@ -47,6 +47,7 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
                         <th scope="col">Date</th>
                         <th scope="col">Heure</th>
                         <th scope="col">Prix</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,6 +58,7 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
                             <td><?php echo htmlspecialchars((string) $trajet->getDate_depart()); ?></td>
                             <td><?php echo htmlspecialchars((string) $trajet->getHeure_depart()); ?></td>
                             <td><?php echo number_format((float) $trajet->getPrix(), 2, ',', ' '); ?> €</td>
+                            <td><a href="router.php?action=trajetPassagers&trajet_id=<?php echo (int) $trajet->getId(); ?>" class="btn btn-sm btn-primary">Voir passagers</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

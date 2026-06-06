@@ -3,6 +3,8 @@
 require_once '../model/ModelVehicule.php';
 require_once '../model/ModelTrajet.php';
 require_once '../model/ModelVille.php';
+require_once '../model/ModelReservation.php';
+require_once '../model/ModelUtilisateur.php';
 
 /**
  * Controlleur Conducteur
@@ -202,6 +204,76 @@ class ControllerConducteur
         /** @var string $rootPath */
         $rootPath = isset($root) ? (string) $root : '';
         $vue = $rootPath . '/app/view/conducteur/addTrajet.php';
+
+        require($vue);
+    }
+    /**
+     * Affiche les passagers d'un trajet actif du conducteur.
+     */
+    public static function trajetPassagers(array $args = array()): void
+    {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        /** @var int $loginId */
+        $loginId = (int) ($_SESSION['login_id'] ?? -1);
+        /** @var string $role */
+        $role = (string) ($_SESSION['login_role'] ?? '');
+
+        if ($loginId === -1 || $role !== 'conducteur') {
+            header('Location: router.php?action=menuAccueil');
+            exit();
+        }
+
+        // Récupérer tous les trajets actifs du conducteur (pour le sélecteur)
+        /** @var array<int, ModelTrajetEnrichi>|null $trajets */
+        $trajets = ModelTrajet::getByConducteurId($loginId);
+        if ($trajets === NULL) {
+            $trajets = array();
+        }
+
+        // Filtrer uniquement les trajets actifs
+        /** @var array<int, ModelTrajetEnrichi> $trajetsActifs */
+        $trajetsActifs = array();
+        foreach ($trajets as $trajet) {
+            if ((string) $trajet->getStatut() === 'actif') {
+                $trajetsActifs[] = $trajet;
+            }
+        }
+
+        // Récupérer l'identifiant du trajet sélectionné
+        /** @var int|null $trajetId */
+        $trajetId = isset($args['trajet_id']) ? (int) $args['trajet_id'] : null;
+
+        /** @var array $passagers */
+        $passagers = array();
+
+        if ($trajetId !== null) {
+            // Vérifier que le trajet appartient bien au conducteur connecté
+            /** @var array|null $trajetData */
+            $trajetData = ModelTrajet::getOne($trajetId);
+            if ($trajetData !== NULL && count($trajetData) > 0) {
+                /** @var ModelTrajet $trajetObj */
+                $trajetObj = $trajetData[0];
+                if ((int) $trajetObj->getConducteur_id() === $loginId) {
+                    // Récupérer les passagers de ce trajet
+                    $passagers = ModelReservation::getPassagersByTrajetId($trajetId);
+                    if ($passagers === NULL) {
+                        $passagers = array();
+                    }
+                } else {
+                    // Le trajet n'appartient pas au conducteur
+                    header('Location: router.php?action=menuAccueil');
+                    exit();
+                }
+            }
+        }
+
+        include 'config.php';
+        /** @var string $rootPath */
+        $rootPath = isset($root) ? (string) $root : '';
+        $vue = $rootPath . '/app/view/conducteur/viewPassagersTrajet.php';
 
         require($vue);
     }
