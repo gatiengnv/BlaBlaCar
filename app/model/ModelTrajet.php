@@ -450,6 +450,30 @@ class ModelTrajet
     }
 
     /**
+     * Met à jour uniquement le statut d'un trajet.
+     *
+     * @param int $id Identifiant du trajet.
+     * @param string $statut Nouveau statut du trajet ('actif' ou 'passif').
+     * @return int Nombre de lignes modifiées ou -1 en cas d'erreur.
+     */
+    public static function updateStatut(int $id, string $statut): int
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "update trajet set statut = :statut where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'statut' => $statut
+            ]);
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+
+    /**
      * Supprime un trajet de la base de données.
      *
      * La suppression est refusée si le trajet possède déjà une réservation.

@@ -48,6 +48,7 @@ $allowed_actions = array(
     "trajetCreate" => array("controller" => "ControllerConducteur", "method" => "trajetCreate"),
     "trajetCreated" => array("controller" => "ControllerConducteur", "method" => "trajetCreated"),
     "trajetPassagers" => array("controller" => "ControllerConducteur", "method" => "trajetPassagers"),
+    "trajetCloturer" => array("controller" => "ControllerConducteur", "method" => "trajetCloturer"),
     "vehicleCreate" => array("controller" => "ControllerVehicule", "method" => "vehicleCreate"),
     "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
     // Auth

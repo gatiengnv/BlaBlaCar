@@ -295,6 +295,31 @@ class ModelReservation
     }
 
     /**
+     * Retourne toutes les réservations d'un trajet donné.
+     *
+     * @param int $trajet_id Identifiant du trajet.
+     * @return array|null Tableau d'objets ModelReservation ou NULL en cas d'erreur.
+     */
+    public static function getReservationsByTrajetId(int $trajet_id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "SELECT * FROM reservation WHERE trajet_id = :trajet_id";
+
+            $statement = $database->prepare($query);
+            $statement->execute(['trajet_id' => $trajet_id]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelReservation");
+
+        } catch (PDOException $e) {
+
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
      * Supprime une réservation de la base de données.
      *
      * @param int $id Identifiant de la réservation.

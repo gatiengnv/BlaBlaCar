@@ -14,6 +14,33 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
 
         <h2 class="mb-4">Mes trajets</h2>
 
+        <?php if (isset($_GET['succes']) && $_GET['succes'] === 'trajet_cloture'): ?>
+            <div class="alert alert-success" role="alert">Le trajet a été clôturé avec succès. Les paiements ont été effectués.</div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['erreur'])): ?>
+            <?php
+            $msgErreur = '';
+            switch ($_GET['erreur']) {
+                case 'trajet_invalide':
+                    $msgErreur = 'Trajet invalide.';
+                    break;
+                case 'trajet_introuvable':
+                    $msgErreur = 'Trajet introuvable.';
+                    break;
+                case 'trajet_deja_cloture':
+                    $msgErreur = 'Ce trajet est déjà clôturé.';
+                    break;
+                case 'erreur_paiement':
+                    $msgErreur = 'Erreur lors du traitement des paiements.';
+                    break;
+                default:
+                    $msgErreur = 'Une erreur est survenue.';
+            }
+            ?>
+            <div class="alert alert-danger" role="alert"><?php echo htmlspecialchars($msgErreur); ?></div>
+        <?php endif; ?>
+
         <?php
         /** @var array<int, ModelTrajetEnrichi> $trajetsActifs */
         $trajetsActifs = array();
@@ -58,7 +85,10 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
                             <td><?php echo htmlspecialchars((string) $trajet->getDate_depart()); ?></td>
                             <td><?php echo htmlspecialchars((string) $trajet->getHeure_depart()); ?></td>
                             <td><?php echo number_format((float) $trajet->getPrix(), 2, ',', ' '); ?> €</td>
-                            <td><a href="router.php?action=trajetPassagers&trajet_id=<?php echo (int) $trajet->getId(); ?>" class="btn btn-sm btn-primary">Voir passagers</a></td>
+                            <td>
+                                <a href="router.php?action=trajetPassagers&trajet_id=<?php echo (int) $trajet->getId(); ?>" class="btn btn-sm btn-primary">Voir passagers</a>
+                                <a href="router.php?action=trajetCloturer&trajet_id=<?php echo (int) $trajet->getId(); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir clôturer ce trajet ? Les paiements seront effectués.');">Clôturer</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
