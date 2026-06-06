@@ -359,6 +359,30 @@ class ModelUtilisateur
     }
 
     /**
+     * Met à jour uniquement le solde d'un utilisateur.
+     *
+     * @param int $id Identifiant de l'utilisateur.
+     * @param float $solde Nouveau solde de l'utilisateur.
+     * @return int Nombre de lignes modifiées ou -1 en cas d'erreur.
+     */
+    public static function updateSolde(int $id, float $solde): int
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "update utilisateur set solde = :solde where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'solde' => $solde
+            ]);
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+
+    /**
      * Supprime un utilisateur de la base de données.
      *
      * @param int $id Identifiant de l'utilisateur.

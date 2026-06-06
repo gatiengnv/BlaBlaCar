@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Model.php';
+require_once __DIR__ . '/ModelTrajetEnrichi.php';
 
 /**
  * Modèle représentant un trajet.
@@ -299,6 +300,36 @@ class ModelTrajet
     }
 
     /**
+     * Retourne tous les trajets d'un conducteur avec les noms des villes.
+     *
+     * @param int $conducteur_id Identifiant du conducteur.
+     * @return array|null Tableau d'objets ModelTrajetEnrichi ou NULL en cas d'erreur.
+     */
+    public static function getByConducteurId(int $conducteur_id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select t.id, vd.nom as nom_depart, va.nom as nom_arrivee, 
+                             t.date_depart, t.heure_depart, t.prix, t.statut
+                      from trajet t
+                      join ville vd on t.ville_depart = vd.id
+                      join ville va on t.ville_arrivee = va.id
+                      where t.conducteur_id = :conducteur_id
+                      order by t.date_depart desc";
+
+            $statement = $database->prepare($query);
+            $statement->execute(['conducteur_id' => $conducteur_id]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajetEnrichi");
+        } catch (PDOException $e) {
+
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
      * Retourne tous les trajets.
      *
      * @return array|null Tableau d'objets ModelTrajet ou NULL en cas d'erreur.
@@ -409,6 +440,30 @@ class ModelTrajet
                 'prix' => $prix,
                 'date_depart' => $date_depart,
                 'heure_depart' => $heure_depart,
+                'statut' => $statut
+            ]);
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
+
+    /**
+     * Met à jour uniquement le statut d'un trajet.
+     *
+     * @param int $id Identifiant du trajet.
+     * @param string $statut Nouveau statut du trajet ('actif' ou 'passif').
+     * @return int Nombre de lignes modifiées ou -1 en cas d'erreur.
+     */
+    public static function updateStatut(int $id, string $statut): int
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "update trajet set statut = :statut where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
                 'statut' => $statut
             ]);
             return $statement->rowCount();

@@ -267,6 +267,59 @@ class ModelReservation
     }
 
     /**
+     * Retourne les passagers ayant réservé un trajet donné.
+     *
+     * @param int $trajet_id Identifiant du trajet.
+     * @return array|null Tableau d'objets ModelUtilisateur ou NULL en cas d'erreur.
+     */
+    public static function getPassagersByTrajetId(int $trajet_id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "SELECT u.id, u.nom, u.prenom, u.role, u.login, u.password, u.solde
+                      FROM reservation r
+                      JOIN utilisateur u ON r.passager_id = u.id
+                      WHERE r.trajet_id = :trajet_id";
+
+            $statement = $database->prepare($query);
+            $statement->execute(['trajet_id' => $trajet_id]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelUtilisateur");
+
+        } catch (PDOException $e) {
+
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
+     * Retourne toutes les réservations d'un trajet donné.
+     *
+     * @param int $trajet_id Identifiant du trajet.
+     * @return array|null Tableau d'objets ModelReservation ou NULL en cas d'erreur.
+     */
+    public static function getReservationsByTrajetId(int $trajet_id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "SELECT * FROM reservation WHERE trajet_id = :trajet_id";
+
+            $statement = $database->prepare($query);
+            $statement->execute(['trajet_id' => $trajet_id]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelReservation");
+
+        } catch (PDOException $e) {
+
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
      * Supprime une réservation de la base de données.
      *
      * @param int $id Identifiant de la réservation.

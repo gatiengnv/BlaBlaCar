@@ -6,6 +6,7 @@ if (!isset($_SESSION['login_id'])) {
 
 require('../controller/ControllerMenu.php');
 require('../controller/ControllerUtilisateur.php');
+require('../controller/ControllerConducteur.php');
 require('../controller/ControllerVille.php');
 require('../controller/ControllerVehicule.php');
 
@@ -45,6 +46,12 @@ $allowed_actions = array(
 
     // Vehicules
     "vehiculesReadAll" => array("controller" => "ControllerVehicule", "method" => "vehiculesReadAll"),
+    "mesVehicules" => array("controller" => "ControllerConducteur", "method" => "mesVehicules"),
+    "mesTrajets" => array("controller" => "ControllerConducteur", "method" => "mesTrajets"),
+    "trajetCreate" => array("controller" => "ControllerConducteur", "method" => "trajetCreate"),
+    "trajetCreated" => array("controller" => "ControllerConducteur", "method" => "trajetCreated"),
+    "trajetPassagers" => array("controller" => "ControllerConducteur", "method" => "trajetPassagers"),
+    "trajetCloturer" => array("controller" => "ControllerConducteur", "method" => "trajetCloturer"),
     "vehicleCreate" => array("controller" => "ControllerVehicule", "method" => "vehicleCreate"),
     "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
     // Auth
