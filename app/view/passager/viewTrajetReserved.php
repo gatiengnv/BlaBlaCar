@@ -18,7 +18,7 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
             <h3>Erreur lors de la réservation.</h3>
         <?php endif; ?>
 
-        <a href="router.php?action=getUserReservation" class="btn btn-success">
+        <a href="router.php?action=passagerReservations" class="btn btn-success">
             Voir mes réservations
         </a>
     </div>
