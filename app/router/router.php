@@ -63,6 +63,8 @@ $allowed_actions = array(
 
     // Réservation 
     "passagerReservations" => array("controller" => "ControllerReservation", "method" => "getUserReservation"),
+    "trajetReservation" => array("controller" => "ControllerReservation", "method" => "trajetReservation"),
+    "trajetReserved" => array("controller" => "ControllerReservation", "method" => "trajetReserved"),
 
     // Auth
     "loginForm" => array("controller" => "ControllerUtilisateur", "method" => "loginForm"),

@@ -30,7 +30,7 @@
                 <?php
                 }
                 if ($role === 'conducteur') {
-                    ?>
+                ?>
                     <li class="nav-item">
                         <a class="nav-link" href="router.php?action=mesVehicules">Mes véhicules</a>
                     </li>
@@ -40,9 +40,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="router.php?action=trajetCreate">Créer un trajet</a>
                     </li>
-                    <?php
+                <?php
                 }
                 ?>
+
+                <?php
+                if ($role === 'passager') {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="router.php?action=passagerReservations">Liste de mes réservations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="router.php?action=trajetReservation">Réserver un trajet</a>
+                    </li>
+                <?php
+                }
+                ?>
+
+
+
+
+
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
