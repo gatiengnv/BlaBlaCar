@@ -385,11 +385,16 @@ class ModelTrajet
                 t.date_depart,
                 t.heure_depart,
                 t.prix,
-                t.statut
+                t.statut,
+                CONCAT(u.prenom, ' ', u.nom) AS conducteur_nom,
+                CONCAT(v.marque, ' ', v.modele) AS vehicule_nom,
+                v.immatriculation
             FROM reservation r
             JOIN trajet t ON r.trajet_id = t.id
             JOIN ville vd ON t.ville_depart = vd.id
             JOIN ville va ON t.ville_arrivee = va.id
+            JOIN utilisateur u ON t.conducteur_id = u.id
+            JOIN vehicule v ON t.vehicule_id = v.id
             WHERE r.passager_id = :passagerId
             ORDER BY t.date_depart DESC, t.heure_depart DESC
         ";

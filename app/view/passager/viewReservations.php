@@ -23,8 +23,10 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
                 <th>Ville d'arrivée</th>
                 <th>Date</th>
                 <th>Heure</th>
+                <th>Conducteur</th>
+                <th>Véhicule</th>
+                <th>Immatriculation</th>
                 <th>Prix</th>
-                <th>Statut</th>
             </tr>
             </thead>
 
@@ -35,8 +37,10 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
                     <td><?= htmlspecialchars($trajet->getNom_arrivee()) ?></td>
                     <td><?= htmlspecialchars($trajet->getDate_depart()) ?></td>
                     <td><?= htmlspecialchars($trajet->getHeure_depart()) ?></td>
+                    <td><?= htmlspecialchars($trajet->getConducteur_nom()) ?></td>
+                    <td><?= htmlspecialchars($trajet->getVehicule_nom()) ?></td>
+                    <td><?= htmlspecialchars($trajet->getImmatriculation()) ?></td>
                     <td><?= htmlspecialchars($trajet->getPrix()) ?> €</td>
-                    <td><?= htmlspecialchars($trajet->getStatut()) ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
