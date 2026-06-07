@@ -10,6 +10,7 @@ require('../controller/ControllerConducteur.php');
 require('../controller/ControllerVille.php');
 require('../controller/ControllerVehicule.php');
 require('../controller/ControllerExaminateur.php');
+require('../controller/ControllerReservation.php');
 
 /** récupération de l'action passée dans l'URL */
 $query_string = $_SERVER['QUERY_STRING'];
@@ -55,9 +56,15 @@ $allowed_actions = array(
     "trajetCloturer" => array("controller" => "ControllerConducteur", "method" => "trajetCloturer"),
     "vehicleCreate" => array("controller" => "ControllerVehicule", "method" => "vehicleCreate"),
     "vehicleCreated" => array("controller" => "ControllerVehicule", "method" => "vehicleCreated"),
+    
     // Examinateur
     "examinateurSuperglobales" => array("controller" => "ControllerExaminateur", "method" => "superglobales"),
     "examinateurReservationsAleatoires" => array("controller" => "ControllerExaminateur", "method" => "reservationsAleatoires"),
+
+    // Réservation 
+    "passagerReservations" => array("controller" => "ControllerReservation", "method" => "getUserReservation"),
+    "trajetReservation" => array("controller" => "ControllerReservation", "method" => "trajetReservation"),
+    "trajetReserved" => array("controller" => "ControllerReservation", "method" => "trajetReserved"),
 
     // Auth
     "loginForm" => array("controller" => "ControllerUtilisateur", "method" => "loginForm"),

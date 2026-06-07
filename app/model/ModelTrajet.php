@@ -369,6 +369,76 @@ class ModelTrajet
     }
 
     /**
+     * Retourne  pour un utilisateur donné
+     * 
+     */
+    public static function getByPassagerId(int $passagerId)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "
+            SELECT
+                t.id,
+                vd.nom AS nom_depart,
+                va.nom AS nom_arrivee,
+                t.date_depart,
+                t.heure_depart,
+                t.prix,
+                t.statut,
+                CONCAT(u.prenom, ' ', u.nom) AS conducteur_nom,
+                CONCAT(v.marque, ' ', v.modele) AS vehicule_nom,
+                v.immatriculation
+            FROM reservation r
+            JOIN trajet t ON r.trajet_id = t.id
+            JOIN ville vd ON t.ville_depart = vd.id
+            JOIN ville va ON t.ville_arrivee = va.id
+            JOIN utilisateur u ON t.conducteur_id = u.id
+            JOIN vehicule v ON t.vehicule_id = v.id
+            WHERE r.passager_id = :passagerId
+            ORDER BY t.date_depart DESC, t.heure_depart DESC
+        ";
+
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'passagerId' => $passagerId
+            ]);
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajetEnrichi");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
+     * Retourne tous les trajets actifs avec les noms des villes.
+     *
+     */
+    public static function getAllActifs()
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select t.id, vd.nom as nom_depart, va.nom as nom_arrivee,
+                         t.date_depart, t.heure_depart, t.prix, t.statut
+                  from trajet t
+                  join ville vd on t.ville_depart = vd.id
+                  join ville va on t.ville_arrivee = va.id
+                  where t.statut = 'actif'
+                  order by t.date_depart asc, t.heure_depart asc";
+
+            $statement = $database->prepare($query);
+            $statement->execute();
+
+            return $statement->fetchAll(PDO::FETCH_CLASS, "ModelTrajetEnrichi");
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    /**
      * Insère un nouveau trajet dans la base de données.
      *
      * @param int $ville_depart Identifiant de la ville de départ.
@@ -503,5 +573,3 @@ class ModelTrajet
         }
     }
 }
-
-?>

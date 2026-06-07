@@ -27,6 +27,15 @@ class ModelTrajetEnrichi
     /** Statut du trajet : actif ou passif */
     private string $statut;
 
+    /** Nom et prénom du conducteur */
+    private string $conducteur_nom;
+
+    /** Véhicule (marque + modèle) */
+    private string $vehicule_nom;
+
+    /** Immatriculation du véhicule */
+    private string $immatriculation;
+
     /**
      * Constructeur de la classe ModelTrajetEnrichi.
      *
@@ -37,6 +46,9 @@ class ModelTrajetEnrichi
      * @param string|null $heure_depart Heure de départ du trajet.
      * @param float|null $prix Prix du trajet.
      * @param string|null $statut Statut du trajet.
+     * @param string|null $conducteur_nom Nom du conducteur.
+     * @param string|null $vehicule_nom Véhicule (marque + modèle).
+     * @param string|null $immatriculation Immatriculation du véhicule.
      */
     public function __construct(
         $id = NULL,
@@ -45,7 +57,10 @@ class ModelTrajetEnrichi
         $date_depart = NULL,
         $heure_depart = NULL,
         $prix = NULL,
-        $statut = NULL
+        $statut = NULL,
+        $conducteur_nom = NULL,
+        $vehicule_nom = NULL,
+        $immatriculation = NULL
     ) {
         if (!is_null($id)) {
             $this->id = $id;
@@ -55,6 +70,9 @@ class ModelTrajetEnrichi
             $this->heure_depart = $heure_depart;
             $this->prix = $prix;
             $this->statut = $statut;
+            $this->conducteur_nom = $conducteur_nom ?? '';
+            $this->vehicule_nom = $vehicule_nom ?? '';
+            $this->immatriculation = $immatriculation ?? '';
         }
     }
 
@@ -126,6 +144,36 @@ class ModelTrajetEnrichi
     public function getStatut(): string
     {
         return $this->statut;
+    }
+
+    /**
+     * Accesseur du nom du conducteur.
+     *
+     * @return string Nom du conducteur.
+     */
+    public function getConducteur_nom(): string
+    {
+        return $this->conducteur_nom;
+    }
+
+    /**
+     * Accesseur du véhicule (marque + modèle).
+     *
+     * @return string Véhicule.
+     */
+    public function getVehicule_nom(): string
+    {
+        return $this->vehicule_nom;
+    }
+
+    /**
+     * Accesseur de l'immatriculation du véhicule.
+     *
+     * @return string Immatriculation.
+     */
+    public function getImmatriculation(): string
+    {
+        return $this->immatriculation;
     }
 }
 ?>
