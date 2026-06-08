@@ -1,13 +1,13 @@
 <?php
-$role = (string) ($_SESSION['login_role'] ?? '');
-$loginId = (int) ($_SESSION['login_id'] ?? -1);
+$role = (string)($_SESSION['login_role'] ?? '');
+$loginId = (int)($_SESSION['login_id'] ?? -1);
 ?>
 
 <nav class="navbar navbar-expand-lg bg-success fixed-top">
     <div class="container-fluid">
 
         <a class="navbar-brand" href="router.php?action=menuAccueil">
-            BlaBlaCar
+            Nicart & Genevois
         </a>
 
         <?php if ($loginId !== -1): ?>
@@ -17,11 +17,11 @@ $loginId = (int) ($_SESSION['login_id'] ?? -1);
         <?php endif; ?>
 
         <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -33,13 +33,20 @@ $loginId = (int) ($_SESSION['login_id'] ?? -1);
                             Administrateur
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="router.php?action=utilisateursReadAll">Liste des utilisateurs</a></li>
-                            <li><a class="dropdown-item" href="router.php?action=villesReadAll">Liste des villes</a></li>
-                            <li><a class="dropdown-item" href="router.php?action=vehiculesReadAll">Liste des véhicules</a></li>
+                            <li><a class="dropdown-item" href="router.php?action=utilisateursReadAll">Liste des
+                                    utilisateurs</a></li>
+                            <li><a class="dropdown-item" href="router.php?action=conducteurCreate">Ajout d'un
+                                    conducteur</a></li>
+                            <li><a class="dropdown-item" href="router.php?action=passagerCreate">Ajout d'un passager</a>
+                            </li>
+                            <li><a class="dropdown-item" href="router.php?action=vehiculesReadAll">Liste des
+                                    véhicules</a></li>
+                            <li><a class="dropdown-item" href="router.php?action=vehicleCreate">Ajout d'un véhicule</a>
+                            </li>
+
+                            <li><a class="dropdown-item" href="router.php?action=villesReadAll">Liste des villes</a>
+                            </li>
                             <li><a class="dropdown-item" href="router.php?action=villeCreate">Ajout d'une ville</a></li>
-                            <li><a class="dropdown-item" href="router.php?action=vehicleCreate">Ajout d'un véhicule</a></li>
-                            <li><a class="dropdown-item" href="router.php?action=conducteurCreate">Ajout d'un conducteur</a></li>
-                            <li><a class="dropdown-item" href="router.php?action=passagerCreate">Ajout d'un passager</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -83,8 +90,10 @@ $loginId = (int) ($_SESSION['login_id'] ?? -1);
                         Examinateur
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="router.php?action=examinateurSuperglobales">E1 - SuperGlobales</a></li>
-                        <li><a class="dropdown-item" href="router.php?action=examinateurReservationsAleatoires">E2 - Réservations aléatoires</a></li>
+                        <li><a class="dropdown-item" href="router.php?action=examinateurSuperglobales">E1 -
+                                SuperGlobales</a></li>
+                        <li><a class="dropdown-item" href="router.php?action=examinateurReservationsAleatoires">E2 -
+                                Réservations aléatoires</a></li>
                     </ul>
                 </li>
 
