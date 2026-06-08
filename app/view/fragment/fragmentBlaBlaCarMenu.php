@@ -104,7 +104,12 @@ $loginId = (int)($_SESSION['login_id'] ?? -1);
                         Innovations
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="router.php?action=">...</a></li>
+                        <li><a class="dropdown-item" href="router.php?action=">Proposez une fonctionnalité originale</a>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="router.php?action=">Proposez une amélioration du code MVC</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -113,10 +118,10 @@ $loginId = (int)($_SESSION['login_id'] ?? -1);
                         Examinateur
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="router.php?action=examinateurSuperglobales">E1 -
-                                SuperGlobales</a></li>
-                        <li><a class="dropdown-item" href="router.php?action=examinateurReservationsAleatoires">E2 -
-                                Réservations aléatoires</a></li>
+                        <li><a class="dropdown-item" href="router.php?action=examinateurSuperglobales">
+                                SuperGlobales (Cookies et Session)</a></li>
+                        <li><a class="dropdown-item" href="router.php?action=examinateurReservationsAleatoires">
+                                Ajout de 10 Réservations aléatoires</a></li>
                     </ul>
                 </li>
 
