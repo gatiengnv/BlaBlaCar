@@ -1,20 +1,18 @@
- 
-<!-- ----- debut de la page cave_acceuil -->
-<?php include 'fragment/fragmentBlaBlaCarHeader.html'; ?>
-<body>
-  <div class="container">
-    <?php
+ <?php include 'fragment/fragmentBlaBlaCarHeader.html'; ?>
+
+ <body>
+   <?php
     include 'fragment/fragmentBlaBlaCarMenu.php';
-    include 'fragment/fragmentBlaBlaCarJumbotron.html';
     ?>
-  </div>   
-  
-  
-  <?php
-  include 'fragment/fragmentBlaBlaCarFooter.html';
-  ?>
+   <div class="container pt-5">
+     <?php
+      include 'fragment/fragmentBlaBlaCarJumbotron.html';
+      ?>
+   </div>
 
-  <!-- ----- fin de la page cave_acceuil -->
+   <?php
+    include 'fragment/fragmentBlaBlaCarFooter.html';
+    ?>
+ </body>
 
-</body>
-</html>
+ </html>
