@@ -52,14 +52,30 @@ $loginId = (int)($_SESSION['login_id'] ?? -1);
                 <?php endif; ?>
 
                 <?php if ($loginId !== -1 && $role === 'conducteur'): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="router.php?action=mesVehicules">Mes véhicules</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="router.php?action=mesTrajets">Mes trajets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="router.php?action=trajetCreate">Créer un trajet</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                            Conducteur
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="router.php?action=mesVehicules">Liste de mes véhicules</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="router.php?action=mesTrajets">Liste de tout mes trajets
+                                    (actifs et passifs)</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="router.php?action=trajetCreate">Ajout d'un trajet</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="router.php?action=trajetPassagers">Liste des passagers de l'un
+                                    de mes trajets actifs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="router.php?action=mesTrajets">Cloturer l'un de mes trajets
+                                    actifs</a>
+                            </li>
+                        </ul>
                     </li>
                 <?php endif; ?>
 
