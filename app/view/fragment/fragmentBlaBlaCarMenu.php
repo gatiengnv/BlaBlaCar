@@ -14,6 +14,9 @@ $loginId = (int)($_SESSION['login_id'] ?? -1);
             <span class="navbar-text me-3">
                     Bonjour <?= htmlspecialchars($_SESSION['login_name'] ?? '') ?>
             </span>
+            <span class="navbar-text me-3">
+                <?= htmlspecialchars($_SESSION['solde'] ?? '') ?> €
+            </span>
         <?php endif; ?>
 
         <button class="navbar-toggler" type="button"
