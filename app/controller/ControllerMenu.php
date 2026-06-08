@@ -1,10 +1,12 @@
 
-<!-- ----- debut ControllerMenu -->
 <?php
 
 require_once '../model/ModelReservation.php';
 class ControllerMenu {
- // --- page d'acceuil
+
+/**
+ * Page d'accueil de l'application
+ */
  public static function menuAccueil() {
   include 'config.php';
   $vue = $root . '/app/view/viewBlaBlaCarAccueil.php';
@@ -15,4 +17,3 @@ class ControllerMenu {
 
 }
 ?>
-<!-- ----- fin menuController -->
