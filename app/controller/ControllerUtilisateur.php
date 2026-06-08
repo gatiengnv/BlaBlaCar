@@ -48,7 +48,10 @@ class ControllerUtilisateur
             if (session_status() !== PHP_SESSION_ACTIVE) session_start();
             $_SESSION['login_id'] = (int) $user->getId();
             $_SESSION['login_role'] = (string) $user->getRole();
-            $_SESSION['login_name'] = (string) ($user->getPrenom() . ' ' . $user->getNom());
+            $_SESSION['login_name'] = (string) ($user->getNom() . ' ' . $user->getPrenom());
+            $_SESSION['login_solde'] = (string) ($user->getSolde());
+
+
 
             // rediriger vers l'accueil (le menu affichera selon le rôle)
             header('Location: router.php?action=menuAccueil');
