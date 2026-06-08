@@ -80,15 +80,22 @@ $loginId = (int)($_SESSION['login_id'] ?? -1);
                 <?php endif; ?>
 
                 <?php if ($loginId !== -1 && $role === 'passager'): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="router.php?action=passagerReservations">
-                            Liste de mes réservations
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                            Passager
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="router.php?action=trajetReservation">
-                            Réserver un trajet
-                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="router.php?action=passagerReservations">
+                                    Liste de mes réservations
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="router.php?action=trajetReservation">
+                                    Réservation d'un trajet actif
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 <?php endif; ?>
 
