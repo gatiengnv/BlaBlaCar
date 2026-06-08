@@ -5,11 +5,12 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
 ?>
 
 <body>
+    <?php
+    include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
+    ?>
     <div class="container">
-        <?php
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarJumbotron.html';
-        ?>
+        <h2>Ajout d'une ville</h2>
+
         <form role="form" method='post' action='router.php'>
             <div class="form-group">
                 <input type="hidden" name='action' value='villeCreated'>
@@ -17,7 +18,7 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
             </div>
             <p></p>
             <br />
-            <button class="btn btn-primary" type="submit">Go</button>
+            <button class="btn btn-primary" type="submit">Ajouter la ville</button>
         </form>
         <p></p>
     </div>

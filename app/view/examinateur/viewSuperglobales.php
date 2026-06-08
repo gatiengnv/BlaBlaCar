@@ -4,15 +4,13 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
 ?>
 
 <body>
+    <?php
+    include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
+    ?>
     <div class="container">
-        <?php
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarJumbotron.html';
-        ?>
 
         <h2 class="mb-4">E1 - SuperGlobales : Cookies et Sessions</h2>
 
-        <!-- Contenu de $_SESSION -->
         <div class="card mb-4">
             <div class="card-header bg-primary text-white">
                 <h4 class="mb-0">$_SESSION</h4>
@@ -51,7 +49,6 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
             </div>
         </div>
 
-        <!-- Contenu de $_COOKIE -->
         <div class="card mb-4">
             <div class="card-header bg-success text-white">
                 <h4 class="mb-0">$_COOKIE</h4>
@@ -90,7 +87,6 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
             </div>
         </div>
 
-        <!-- Vérification des informations de connexion -->
         <div class="card mb-4">
             <div class="card-header bg-info text-white">
                 <h4 class="mb-0">Vérification des informations de connexion</h4>

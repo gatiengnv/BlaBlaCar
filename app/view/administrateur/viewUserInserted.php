@@ -13,11 +13,10 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
 ?>
 
 <body>
+    <?php
+    include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
+    ?>
     <div class="container">
-        <?php
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarJumbotron.html';
-        ?>
 
         <?php if ($message): ?>
 

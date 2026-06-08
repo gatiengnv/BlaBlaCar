@@ -5,12 +5,11 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
 ?>
 
 <body>
+    <?php
+    include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
+    ?>
     <div class="container">
-        <?php
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarJumbotron.html';
-        ?>
-
+        <h2>Liste des véhicules</h2>
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>

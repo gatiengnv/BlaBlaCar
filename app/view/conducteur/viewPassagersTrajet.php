@@ -1,4 +1,5 @@
 <?php
+
 /** @var array<int, ModelTrajetEnrichi> $trajetsActifs */
 /** @var array $passagers */
 /** @var int|null $trajetId */
@@ -10,11 +11,10 @@ require($rootPath . '/app/view/fragment/fragmentBlaBlaCarHeader.html');
 ?>
 
 <body>
+    <?php
+    include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
+    ?>
     <div class="container">
-        <?php
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarMenu.php';
-        include $rootPath . '/app/view/fragment/fragmentBlaBlaCarJumbotron.html';
-        ?>
 
         <h2 class="mb-4">Passagers de mes trajets</h2>
 
