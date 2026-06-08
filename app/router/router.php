@@ -13,7 +13,7 @@ require('../controller/ControllerExaminateur.php');
 require('../controller/ControllerReservation.php');
 
 /** récupération de l'action passée dans l'URL */
-$query_string = $_SERVER['QUERY_STRING'];
+$query_string = $_SERVER['QUERY_STRING'] ?? '';
 
 /** 
  * Permet de construire une table de hachage (clé + valeur) 
