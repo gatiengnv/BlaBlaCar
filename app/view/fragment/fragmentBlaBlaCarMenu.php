@@ -109,12 +109,11 @@ $loginId = (int)($_SESSION['login_id'] ?? -1);
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="router.php?action=">Proposez une fonctionnalité originale</a>
                         </li>
-                    </ul>
-                    <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="router.php?action=">Proposez une amélioration du code MVC</a>
                         </li>
                     </ul>
                 </li>
+
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
