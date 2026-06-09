@@ -11,6 +11,7 @@ require('../controller/ControllerVille.php');
 require('../controller/ControllerVehicule.php');
 require('../controller/ControllerExaminateur.php');
 require('../controller/ControllerReservation.php');
+require('../controller/ControllerInnovation.php');
 
 /** récupération de l'action passée dans l'URL */
 $query_string = $_SERVER['QUERY_STRING'] ?? '';
@@ -65,6 +66,10 @@ $allowed_actions = array(
     "passagerReservations" => array("controller" => "ControllerReservation", "method" => "getUserReservation"),
     "trajetReservation" => array("controller" => "ControllerReservation", "method" => "trajetReservation"),
     "trajetReserved" => array("controller" => "ControllerReservation", "method" => "trajetReserved"),
+
+    // Innovation
+    "compagnonsDeRoute" => array("controller" => "ControllerInnovation", "method" => "compagnonsDeRoute"),
+    "innovationRouter" => array("controller" => "ControllerInnovation", "method" => "innovationRouter"),
 
     // Auth
     "loginForm" => array("controller" => "ControllerUtilisateur", "method" => "loginForm"),

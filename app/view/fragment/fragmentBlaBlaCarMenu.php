@@ -141,8 +141,13 @@ $userSolde = $_SESSION['login_solde'] ?? null;
 
                     <ul class="dropdown-menu shadow-sm border-0 rounded-3">
                         <li>
-                            <a class="dropdown-item disabled" href="#">
-                                À venir...
+                            <a class="dropdown-item" href="router.php?action=compagnonsDeRoute">
+                                <i class="bi bi-people-fill me-2"></i>Compagnons de Route
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="router.php?action=innovationRouter">
+                                <i class="bi bi-shield-check me-2"></i>Sécurité du Routeur
                             </a>
                         </li>
                     </ul>
