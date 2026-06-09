@@ -1,33 +1,44 @@
-# BlaBlaCar Project
+# 🚗 BlaBlaCar Project
 
-## Installation / Configuration
+## ⚙️ Installation / Configuration
 
-1. Ouvrir un terminal dans le répertoire du projet
+1. Ouvrir un terminal dans le répertoire du projet.
 
-2. Construire l'environnement Docker de développement
-
-Lancer le projet en dev avec Docker
+2. Construire et démarrer l'environnement Docker :
 
 ```bash
 docker compose up -d
 ```
 
-Puis ouvrez un terminal et lancer
-
-Arreter le projet
+3. Arrêter l'environnement Docker :
 
 ```bash
 docker compose down
 ```
 
-Puis Lancer un serveur PHP avec la commande ci-dessous
+4. Lancer le serveur PHP :
 
 ```bash
 php -S localhost:8000
 ```
 
-=> Accéder au projet [En cliquant ici](http://localhost:8000/index.php).
+## 🌐 Accès au projet
 
-=> Accéder à l'interface PHPMyAdmin [En cliquant ici](http://localhost:8080/).
+### 🚗 Application
 
-## Auteurs : Gatien Genevois, Nathan NICART
+http://localhost:8000/index.php
+
+### 🗄️ PHPMyAdmin
+
+http://localhost:8080
+
+## 🚀 Déploiement dev-isi
+
+Projet accessible à l'adresse :
+
+https://dev-isi.utt.fr/~genevoig/lo07_tp/projet/app/router/router.php?action=menuAccueil
+
+## 👨‍💻 Auteurs
+
+- Gatien GENEVOIS
+- Nathan NICART
